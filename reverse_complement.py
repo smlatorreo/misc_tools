@@ -1,9 +1,22 @@
-from Bio import Seq
+#!/usr/bin/env python3
+
 from sys import argv
 
-with open("%s" % argv[1]) as file:
-    input = file.read().splitlines()
+inpf = argv[1]
+if inpf == "-":
+    inpf = '/dev/stdin'
 
-for i in input:
-    sequence = Seq.Seq(i)
-    print(sequence.reverse_complement())
+pairs = {'A':'T','T':'A','C':'G','G':'C','N':'N','-':'-','?':'?'}
+
+with open(inpf, 'r') as f:
+    for line in f:
+        if line.startswith('>'):
+            try:
+                print(''.join([pairs[n] for n in seq[::-1]]))
+            except NameError:
+                pass
+            seq = ''
+            print(line.strip() + '_REVCOMP')
+        else:
+            seq = seq + line.strip()
+print(''.join([pairs[n] for n in seq[::-1]]))

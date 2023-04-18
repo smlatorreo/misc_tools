@@ -1,4 +1,5 @@
 # USAGE: python3 tped2nexus.py <prefixfile.tped>
+# WARNING: This script is specifically designed for haploid genotypes
 
 from sys import argv
 

@@ -6,7 +6,8 @@ inpf = argv[1]
 if inpf == "-":
     inpf = '/dev/stdin'
 
-pairs = {'A':'T','T':'A','C':'G','G':'C','N':'N','-':'-','?':'?'}
+pairs = {'A':'T','T':'A','C':'G','G':'C','N':'N','-':'-','?':'?',
+         'a':'t','t':'a','c':'g','g':'c','n':'n'}
 
 with open(inpf, 'r') as f:
     for line in f:

@@ -17,4 +17,7 @@ Takes a tped file as input and converts it to a nexus representation
 Takes a pseudo-fasta file consiting of biallelic SNPs and returns a binary matrix in which Major alleles are codified as '0', minor alleles as '1' and missing data ('?') as the mean allele frequency. You can use this matrix to quickly compute a PCA
 
 ## dna2aa.py
-This script uses the [Expasy server](https://web.expasy.org/translate/programmatic_access.html) to translate a nucleotide sequence into the 6 possible AA frames.  
+This script uses the [Expasy server](https://web.expasy.org/translate/programmatic_access.html) to translate a nucleotide sequence into the 6 possible AA frames. 
+
+## extract_read_from_fasta.py
+Extract specific contgs from a fasta file

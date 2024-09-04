@@ -18,7 +18,6 @@ na = False
 if argv[1] == '--na':
     na = True
 fasta = argv[1]
-#misschar = '?' # Change if required
 
 seqs = {S.id:pd.Series(list(S.seq)) for S in SeqIO.parse(fasta, 'fasta')}
 m = pd.concat(seqs.values(), axis=1)
@@ -46,5 +45,3 @@ def binarize(pile, misschar, na):
 print('\t'.join(list(seqs.keys())))
 for pos in range(m.shape[0]):
     print('\t'.join([str(i) for i in binarize(m.iloc[pos,:], misschar, na)]))
-#for pos in range(m.shape[0]):
-#    print('\t'.join([str(i) for i in binarize(m.iloc[pos,:], misschar)]))

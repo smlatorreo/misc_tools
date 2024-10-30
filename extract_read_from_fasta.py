@@ -5,22 +5,28 @@
 from Bio import SeqIO
 from sys import argv
 from sys import stdout
+import gzip
+
+if argv[1].endswith("gz"):
+    handler = gzip.open(argv[1], "rt")
+else:
+    handler = open(argv[1], "r")
 
 if '-i' in argv:
-    for read in SeqIO.parse("%s" % argv[1], "fasta"):
+    for read in SeqIO.parse(handler, "fasta"):
         print(read.id)
     match = input('Enter the first characters of the read you want to extract: ')
     output = input('Enter the name of the output file: ')
-    for read in SeqIO.parse("%s" % argv[1], "fasta"):
+    for read in SeqIO.parse(handler, "fasta"):
         if read.id == match:
             SeqIO.write(read, output, "fasta")
 elif '-l' in argv:
     lst_f = argv[-1]
     contigs = [i.strip() for i in open(lst_f, 'r').readlines()]
-    for read in SeqIO.parse("%s" % argv[1], "fasta"):
+    for read in SeqIO.parse(handler, "fasta"):
         if read.id in contigs:
             SeqIO.write(read, stdout, "fasta")
 else:
-    for read in SeqIO.parse("%s" % argv[1], "fasta"):
+    for read in SeqIO.parse(handler, "fasta"):
         if read.id == argv[2]:
             SeqIO.write(read, stdout, "fasta")
